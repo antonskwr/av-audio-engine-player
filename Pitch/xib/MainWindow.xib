@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="14313.18" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
+    <dependencies>
+        <deployment identifier="macosx"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="14313.18"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <customObject id="-2" userLabel="File's Owner"/>
+        <customObject id="-1" userLabel="First Responder" customClass="FirstResponder"/>
+        <customObject id="-3" userLabel="Application" customClass="NSObject"/>
+        <window title="Window" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" releasedWhenClosed="NO" animationBehavior="default" id="QvC-M9-y7g" customClass="MainWindow" customModule="Pitch" customModuleProvider="target">
+            <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES" resizable="YES"/>
+            <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
+            <rect key="contentRect" x="196" y="240" width="480" height="270"/>
+            <rect key="screenRect" x="0.0" y="0.0" width="1280" height="777"/>
+            <view key="contentView" wantsLayer="YES" id="EiT-Mj-1SZ">
+                <rect key="frame" x="0.0" y="0.0" width="480" height="270"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="bhz-u3-12L">
+                        <rect key="frame" x="207" y="28" width="66" height="32"/>
+                        <buttonCell key="cell" type="push" title="Play" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="j2G-Oi-DTq">
+                            <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                            <font key="font" metaFont="system"/>
+                        </buttonCell>
+                        <connections>
+                            <action selector="playPressed:" target="QvC-M9-y7g" id="Apf-5V-Kq4"/>
+                        </connections>
+                    </button>
+                    <slider horizontalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="WOn-1z-Rrb">
+                        <rect key="frame" x="227" y="73" width="24" height="123"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="118" id="NbP-oV-BeO"/>
+                        </constraints>
+                        <sliderCell key="cell" continuous="YES" alignment="left" minValue="-0.080000000000000002" maxValue="0.080000000000000002" tickMarkPosition="right" numberOfTickMarks="1" sliderType="linear" id="S5H-az-rAf"/>
+                        <connections>
+                            <action selector="pitchChanged:" target="QvC-M9-y7g" id="V8c-Mu-2ql"/>
+                        </connections>
+                    </slider>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="bhz-u3-12L" firstAttribute="centerX" secondItem="EiT-Mj-1SZ" secondAttribute="centerX" id="Mjk-HO-DvJ"/>
+                    <constraint firstItem="bhz-u3-12L" firstAttribute="top" secondItem="WOn-1z-Rrb" secondAttribute="bottom" constant="20" id="P0L-bX-hML"/>
+                    <constraint firstItem="WOn-1z-Rrb" firstAttribute="centerX" secondItem="EiT-Mj-1SZ" secondAttribute="centerX" id="R7s-GS-YdV"/>
+                    <constraint firstItem="WOn-1z-Rrb" firstAttribute="centerY" secondItem="EiT-Mj-1SZ" secondAttribute="centerY" id="ZdP-K1-YFI"/>
+                </constraints>
+            </view>
+            <connections>
+                <outlet property="pitchSlider" destination="WOn-1z-Rrb" id="sDS-Hy-oGu"/>
+                <outlet property="playButton" destination="bhz-u3-12L" id="5Pr-hS-VRS"/>
+            </connections>
+        </window>
+    </objects>
+</document>
