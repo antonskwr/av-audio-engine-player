@@ -16,7 +16,7 @@ class MainWindow: NSWindow {
     var trackPlayer = AudioPlayer()
     
     func playSound() {
-        guard let url = Bundle.main.url(forResource: "rayban", withExtension: "wav") else { return }
+        guard let url = Bundle.main.url(forResource: "BattleBreak", withExtension: "wav") else { return }
         trackPlayer.playSound(url: url, loops: true)
     }
     

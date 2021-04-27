@@ -36,7 +36,6 @@ class AudioPlayer: NSObject {
         audioEngine.attach(audioPlayerNode)
         
         timePitch.rate = 1
-        //        timePitch.overlap = 32
         audioEngine.attach(timePitch)
         audioEngine.connect(audioPlayerNode, to: timePitch, format: nil)
         audioEngine.connect(timePitch, to: audioEngine.mainMixerNode, format: nil)
@@ -57,7 +56,13 @@ class AudioPlayer: NSObject {
     fileprivate func fadeOutAudio() {
         canPlay = false
         let timeInterval = fadeOutDuration / (1 / Double(volumeInterval))
-        fadeOutTimer = Timer.scheduledTimer(timeInterval: timeInterval, target: self, selector: #selector(fadeOutTimerDidFire), userInfo: nil, repeats: true)
+        fadeOutTimer = Timer.scheduledTimer(
+            timeInterval: timeInterval,
+            target: self,
+            selector: #selector(fadeOutTimerDidFire),
+            userInfo: nil,
+            repeats: true
+        )
     }
     
     @objc fileprivate func fadeOutTimerDidFire() {
@@ -66,12 +71,12 @@ class AudioPlayer: NSObject {
         audioEngine.mainMixerNode.outputVolume = newValue
         if newValue == 0.0 {
             fadeOutTimer.invalidate()
-            playHanldler()
+            playHandler()
             canPlay = true
         }
     }
     
-    fileprivate func playHanldler() {
+    fileprivate func playHandler() {
         guard let url = loopUrl else { return }
         audioPlayerNode.stop()
         
@@ -81,7 +86,13 @@ class AudioPlayer: NSObject {
             let audioFrameCount = UInt32(audioFile.length)
             let audioFileBuffer = AVAudioPCMBuffer(pcmFormat: audioFormat, frameCapacity: audioFrameCount)
             try audioFile.read(into: audioFileBuffer!)
-            audioPlayerNode.scheduleBuffer(audioFileBuffer!, at: nil, options: .loops, completionHandler: nil)
+            
+            audioPlayerNode.scheduleBuffer(
+                audioFileBuffer!,
+                at: nil,
+                options: .loops,
+                completionHandler: nil
+            )
             audioPlayerNode.play()
             audioEngine.mainMixerNode.outputVolume = 1
         } catch {
